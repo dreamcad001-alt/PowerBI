@@ -12,5 +12,5 @@ variable "env" {
 
 variable "local_file_path" {
   description = "Path to the local Excel file"
-  default     = "C:/Users/Anusha/Downloads/Orders.xlsx"
+  default     = "Orders.xlsx"
 }
