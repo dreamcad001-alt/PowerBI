@@ -1,14 +1,13 @@
-
 provider "aws" {
-  region  = "us-east-1"
-  profile = "default"
+  region = "us-east-1"
 }
 
+
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
+  backend "s3" {
+    bucket  = "local-test-s3-dev"
+    key     = "terraform/state.tfstate"
+    region  = "us-east-1"
+    encrypt = true
   }
 }
