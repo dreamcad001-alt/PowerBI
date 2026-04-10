@@ -1,7 +1,7 @@
 
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "${var.bucket_name}-${var.env}"
+  bucket = "${var.bucket_name}-${var.env}-240"
 
   tags = {
     Environment = var.env
@@ -25,13 +25,13 @@ resource "aws_s3_bucket_versioning" "versioning" {
 resource "aws_s3_object" "upload_data" {
   bucket = aws_s3_bucket.my_bucket.id
   key    = "Orders.xlsx"
-  source = var.local_file_path
+  source = "${path.module}/Orders.xlsx"
   etag   = filemd5("${path.module}/Orders.xlsx")
 }
 
 # IAM Role for Lambda
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_s3_role"
+  name               = "lambda_s3_role_PowerBI"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
 }
 
