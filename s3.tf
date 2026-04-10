@@ -26,7 +26,7 @@ resource "aws_s3_object" "upload_data" {
   bucket = aws_s3_bucket.my_bucket.id
   key    = "Orders.xlsx"
   source = var.local_file_path
-  etag   = filemd5(var.local_file_path)
+  etag   = filemd5("${path.module}/Orders.xlsx")
 }
 
 # IAM Role for Lambda
