@@ -3,15 +3,14 @@ variable "aws_region" {
 }
 
 variable "bucket_name" {
-  default = "my-terraform-s3-bucket-demo"
+  default = "my-terraform-s3-bucket"
 }
 
-variable "C:\Users\Anusha\Downloads\Orders.xlsx" {
-  description = "Path to the local file you want to upload"
-  default     = "Orders.xlsx"
+variable "env" {
+  default = "dev"
 }
 
-variable "s3_key_name" {
-  description = "Name of the file in S3"
+variable "local_file_path" {
+  description = "Path to the local Excel file"
   default     = "Orders.xlsx"
 }
