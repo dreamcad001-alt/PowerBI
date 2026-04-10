@@ -1,7 +1,7 @@
 
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "${var.bucket_name}-${var.env}-240"
+  bucket = "${var.bucket_name}-${var.env}-2212"
 
   tags = {
     Environment = var.env
@@ -31,7 +31,7 @@ resource "aws_s3_object" "upload_data" {
 
 # IAM Role for Lambda
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_s3_role_PowerBI"
+  name               = "lambda_s3_role_PowerBI1"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
 }
 
