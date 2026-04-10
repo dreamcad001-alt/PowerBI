@@ -1,7 +1,7 @@
 
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "${var.bucket_name}-${var.env}-2212"
+  bucket = "${var.bucket_name}-${var.env}-212"
 
   tags = {
     Environment = var.env
@@ -67,4 +67,25 @@ resource "aws_lambda_function" "read_s3" {
 
   filename         = "lambda.zip"
   source_code_hash = filebase64sha256("lambda.zip")
+}
+
+resource "aws_iam_role_policy" "lambda_s3_policy" {
+  name = "lambda_s3_policy"
+  role = aws_iam_role.lambda_s3_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = ["s3:GetObject"]
+        Resource = "arn:aws:s3:::my-terraform-s3-bucket-dev-212/*"
+      },
+      {
+        Effect = "Allow"
+        Action = ["s3:ListBucket"]
+        Resource = "arn:aws:s3:::my-terraform-s3-bucket-dev-212"
+      }
+    ]
+  })
 }
