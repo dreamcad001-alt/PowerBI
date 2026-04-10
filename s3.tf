@@ -6,7 +6,8 @@ provider "aws" {
 resource "aws_s3_bucket" "my_bucket" {
   bucket = "${var.bucket_name}-${var.env}"
   acl    = "private"
-
+  }
+  
   versioning {
     enabled = true
   }
@@ -15,7 +16,7 @@ resource "aws_s3_bucket" "my_bucket" {
     Environment = "Dev"
     Project     = "TerraformS3LambdaDemo"
   }
-}
+
 
 # Upload a file to S3
 resource "aws_s3_object" "upload_data" {
