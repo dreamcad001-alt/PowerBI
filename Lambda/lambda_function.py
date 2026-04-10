@@ -2,7 +2,7 @@ import boto3
 
 def lambda_handler(event, context):
     s3 = boto3.client('s3')
-    bucket_name = "my-terraform-s3-bucket-demo"
+    bucket_name = "${var.bucket_name}-${var.env}-240"
     key = "Orders.xlsx"
 
     response = s3.get_object(Bucket=bucket_name, Key=key)
